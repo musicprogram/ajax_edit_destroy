@@ -1,0 +1,57 @@
+
+<div id="post_<%= post.id %>">
+
+	<p>
+	  <strong>Title:</strong>
+	  <%= post.title %>
+	</p>
+
+	<p>
+	  <strong>Content:</strong>
+	  <%= post.content %>
+	</p>
+
+	<div class="btn-group">
+		<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal_<%= post.id %>">
+	  Edit
+	</button>
+	<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+
+	</div>
+
+
+
+	<%= form_for(post, :method => :put, remote: true) do |f| %>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal_<%= post.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Edit</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="field">
+			  <%= f.label :title %><br>
+			    <%= f.text_field :title, class:'form-control post_title' %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :content %><br>
+			    <%= f.text_area :content, class:'form-control post_content' %>
+			  </div>
+	      </div>
+	      <div class="modal-footer">
+	             <button type="button" class="btn btn-primary"><%= f.submit %></button>
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+<% end %>
+
+</div>
+
